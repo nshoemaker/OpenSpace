@@ -1,20 +1,24 @@
 OpenSpace
 =========
 
-OpenSpace is a webapp designed to help you reserve rooms on cmapus.
-![Alt text](/ScreenShots/CreateReservation.png?raw=true "Reservation View")
+OpenSpace is a webapp designed to help you reserve rooms on campus.
+![Alt text](Planning/ScreenShots/CreateReservation.png?raw=true "Reservation View")
 -------------------------------------------------------------------------------
+
 This is a project from a Software Development class. I worked on it with 4 other people. 
 We had two weeks to plan, design, and implement the project.  
 We had it deployed on aws but have since taken it down.
+
 -------------------------------------------------------------------------------
 Documentation
 =============
 This holds the user documentation for the app.
+
 -------------------------------------------------------------------------------
 Planning
 =============
 This holds the planning and design documents for the project.
+
 -------------------------------------------------------------------------------
 room_reservation app
 ================
