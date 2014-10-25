@@ -1,0 +1,54 @@
+.navbar {
+  margin-bottom: 20px;
+}
+
+.navbar-default {
+  background-color: #eee;
+  border-color: #eee;
+}
+.navbar-default .navbar-brand {
+  color: Crimson;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #B01030;
+  background-color: transparent;
+}
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 48px;
+  line-height: 20px;
+  color: Crimson;
+  font-family: Roboto, Tahoma, Verdana, sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+}
+.navbar-brand:hover,
+.navbar-brand:focus {
+  text-decoration: none;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: Crimson;
+  background-color: #eee;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  font-size: 20px;
+}
+.navbar-nav {
+  margin: 11px 0px;
+}
+.navbar-nav > li > a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+  margin-right: 75px;
+}

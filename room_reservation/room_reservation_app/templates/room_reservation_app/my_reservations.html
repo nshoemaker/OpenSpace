@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Reservations </title> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS & JavaScript CDN -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <link href="../../static/css/my_reservations.css" rel="stylesheet">
+    <link href="../../static/css/reset.css" rel="stylesheet">
+    <link href="../../static/css/navbar.css" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400italic,400,300,700italic,700,500|Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'> 
+
+    <!-- Custom styles for this template -->
+
+</head>
+
+<body>
+
+	<div class="content row">
+      <div class="col-sm-12 col-md-12">
+        <header class="clearfix">
+          <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+              <div class="navbar-header">
+              	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+			            <span class="sr-only">Toggle navigation</span>
+			            kidouchi <span class="caret"></span>
+			          </button>
+                <a class="navbar-brand" href="/myReservations/"> OpenSpace </a>
+              </div>
+              <div class="navbar-collapse collapse">
+			          <ul class="nav navbar-nav">
+			            <li class="active" ><a href="/myReservations/"> My Reservations </a></li>
+			            <li><a href="/logout/">Sign Out</a></li>
+                </ul>
+		    			</div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+          </nav>
+        </header>
+      </div>
+    </div>
+
+	<div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 ">
+
+    <div class="white_container">
+        <h2> <a href = "/createReservation"> Create New Reservation </a> </h2>
+    </div>
+
+    {% for title, date, start, end, room, description, id in events %}
+
+    <div id="{{id}}" class="white_container">
+      <!-- Delete Icon -->
+        <button class="btn btn-default btn-sm pull-right"  type="button">
+          <a class="glyphicon glyphicon-remove delete_icon" href="/deleteEvent/{{id}}"></a>
+        </button>
+        <h2> <a> {{title}} </a> </h2>
+
+        <h3> <b> {{date}} </b> from <b> {{start}} to {{end}} </b> in <b> {{room}} </b> </h3>
+
+        <p>
+          {{description}}
+        </p>
+    </div>
+
+    {% endfor %}
+
+  <script>
+    function deleteEvent(eventId) {
+      $("#" + eventId).css("background-color", "#D4D4D4");
+      $.ajax({
+        url: "/deleteEvent/" + eventId + "/",
+      }).success(function(){
+        $("#" + eventId).remove();
+        console.log("successfully deleted event")
+      }).error(function(data) {
+        $("#" + eventId).css("background-color", "#FFFFFF");
+        alert("Failed to delete event")
+      });
+    }
+  </script>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../../static/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+
+
+</html>

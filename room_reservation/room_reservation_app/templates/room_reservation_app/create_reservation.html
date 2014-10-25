@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap 3 CSS file -->
+	<link href="../../static/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> 
+
+	<!-- Bootstrap Datetimepicker CSS file -->
+	<link href="../../static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	
+    <link href="../../static/css/reset.css" rel="stylesheet">
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+	<!-- Bootstrap 3 -->
+	<script src="../../static/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Moment.js -->
+	<script src="../../static/bower_components/moment/moment.js"></script>
+
+	<!-- Bootstrap Datetimepicker -->
+	<script src="../../static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.js"></script>
+
+	
+    <link href="../../static/css/my_reservations.css" rel="stylesheet">
+    <link href="../../static/css/reset.css" rel="stylesheet">
+    <link href="../../static/css/navbar.css" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400italic,400,300,700italic,700,500|Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'> 
+
+    <title> Reservations </title> 
+    	
+
+</head>
+
+<body>
+	<style type="text/css">
+		.panel {
+	  		box-shadow:         3px 3px 5px 6px #ccc;
+	  		/* margin: 200px; */
+	  		margin: 0 auto;
+	  		width: 500px;
+	  		margin-top: 20px;
+	  		margin-bottom: 20px;
+		}
+		.panel-body {
+			padding: 10px;
+		}
+		.login {
+			margin-bottom: 10px;
+			width: 100%;
+			padding: 10px 16px;
+			font-size: 18px;
+			line-height: 1.33;
+			border-radius: 6px;
+		}
+		a.resetpw:hover {
+			color: #555;
+		}	
+		a, a:hover, a:active, a:link {
+			color: #FFF;
+			text-decoration: none;
+		}
+	</style>
+
+
+	<div class="content row">
+      <div class="col-sm-12 col-md-12">
+        <header class="clearfix">
+          <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+              <div class="navbar-header">
+              	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+			            <span class="sr-only">Toggle navigation</span>
+			            kidouchi <span class="caret"></span>
+			          </button>
+                	<a class="navbar-brand" href="/myReservations/"> OpenSpace </a>
+              	</div>
+              	<div class="navbar-collapse collapse">
+	          		<ul class="nav navbar-nav">
+		            	<li class="active" ><a href="/myReservations/"> My Reservations </a></li>
+		            	<li><a href="/logout/">Sign Out</a></li>
+		         	</ul>
+    		  	</div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+          </nav>
+        </header>
+      </div>
+    </div>
+
+	<!-- initialize the pickers -->
+	<script type="text/javascript">
+  		$(function () {
+    		$('#time-start').datetimepicker({
+    			pickDate: false,
+    			minuteStepping: 30
+    		});
+    		$('#time-end').datetimepicker({
+    			pickDate: false,
+    			minuteStepping: 30
+    		});
+    		$('#date').datetimepicker({
+    			pickTime: false
+    		});
+  		});
+	</script>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        	<h3 class="panel-title">Create Reservation</h3>
+        </div>
+
+		<div class="container-fluid panel-body">
+			<div class="row">
+				<div class="col-md-4 col-sm-6 col-xs-4">
+			  		<span>Start:</span>
+			  		<div class='input-group date' id='time-start'>
+			    		<input type='text' class="form-control" readonly="true" />
+			    		<span class="input-group-addon">
+			      			<span class="glyphicon glyphicon-time"></span>
+			    		</span>
+			  		</div>
+			  	</div>
+			  	<div class="col-md-4 col-sm-6 col-xs-4">
+			  		<span>End:</start>
+			  		<div class='input-group date' id='time-end'>
+			    		<input type='text' class="form-control" readonly="true" />
+			    		<span class="input-group-addon">
+			      			<span class="glyphicon glyphicon-time"></span>
+			    		</span>
+			  		</div>
+			  	</div>
+		  	</div>
+		  	<br>
+		  	<div class="row">
+		  		<div class="col-md-6 col-sm-12 col-xs-6">
+			  		<span>Date:</start>
+			  		<div class='input-group date' id='date'>
+			    		<input type='text' class="form-control" readonly="true" />
+			    		<span class="input-group-addon">
+			      			<span class="glyphicon glyphicon-calendar"></span>
+			    		</span>
+			  		</div>
+			  	</div>
+		  	</div>
+		  	<br>
+		  	<div class="row">
+		  		<div class="col-md-6 col-sm-12 col-xs-6">
+			  		<label class="checkbox-inline">
+	  					<input type="checkbox" id="inlineCheckbox1" value="option1">Once
+					</label>
+					<label class="checkbox-inline">
+	  					<input type="checkbox" id="inlineCheckbox2" value="option2">Repeat
+					</label>
+				</div>
+		  	</div>
+			<br>
+		  	<div class="row">
+		  		<div class="col-md-3 col-sm-3 col-xs-3">
+		  			<span>Building:</span>
+		  			<select class="form-control">
+  						<option>Wean Hall</option>
+					    <option>Porter Hall</option>
+					   	<option>Gates</option>
+					    <option>Cyert</option>
+						<option>Hunt Library</option>
+						<option>Tepper</option>
+						<option>Doherty Hall</option>
+						<option>Baker Hall</option>
+						<option>Newell-Simon</option>
+					</select>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-3">
+					<span>Room:</span>
+					<select class="form-control">
+	  					<option>101A</option>
+						<option>205B</option>
+						<option>506C</option>
+						<option>507A</option>
+						<option>800F</option>
+					</select>
+				</div>
+		  	</div>
+		  	<br>
+		  	<div class="row">
+		  		<div class="col-md-8 col-sm-8 col-xs-8">
+		  			<span>Event:</span>
+		  			<textarea class="form-control" rows="1"></textarea>
+		  		</div>
+		  	</div>
+		  	<br>
+		  	<div class="row">
+		  		<div class="col-md-8 col-sm-8 col-xs-8">
+		  			<span>Description:</span>
+		  			<textarea class="form-control" rows="4"></textarea>
+		  		</div>
+		  	</div>
+		  	<br>
+		  	<div class="row">
+		  		<div class="col-md-4 col-sm-4 col-xs-4">
+					<a href="#" class="btn btn-primary create" type="button">Create Reservation</a>	
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-3">
+					<a href="#" class="btn btn-primary create" type="button">Clear</a>	
+				</div>
+			</div>
+		</div>
+</body>
+
+</html>

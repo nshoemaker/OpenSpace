@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.css' rel='stylesheet' />
+	<link href='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+	<script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.min.css" />
+	<script type="text/javascript" src="https://rawgit.com/Eonasdan/bootstrap-datetimepicker/master/src/js/bootstrap-datetimepicker.js"></script>
+	<link href="../../static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/reset.css" rel="stylesheet">
+
+</head>
+<body>
+	<style type="text/css">
+		#container {
+			width: 1000px;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+		#calendar {
+			width: 550px;
+			height: 500px;
+			margin-right: 50px;
+			float: left;		
+		}
+		.panel {
+	  		box-shadow: 3px 3px 5px 6px #ccc;
+	  		width: 400px;
+	  		float: left;
+		}
+		.panel-body {
+			padding: 10px;
+		}
+		a.resetpw:hover {
+			color: #555;
+		}	
+		a, a:hover, a:active, a:link {
+			color: #FFF;
+			text-decoration: none;
+		}
+	</style>
+
+	<!-- initialize the pickers -->
+	<script type="text/javascript">
+  		$(function () {
+    		$('#time-start').datetimepicker({
+    			pickDate: false,
+    			minuteStepping: 30
+    		});
+    		$('#time-end').datetimepicker({
+    			pickDate: false,
+    			minuteStepping: 30
+    		});
+    		$('#date').datetimepicker({
+    			pickTime: false
+    		});
+    		$('#time-start-input').keyup(function(){
+    			$(this).val("");
+    		});
+    		$('#time-end-input').keyup(function(){
+    			$(this).val("");
+    		});
+    		$('#date-input').keyup(function(){
+    			$(this).val("");
+    		});
+    		$(".warning-close").click(function(){
+    			$("#alert").remove();
+    		});
+  		});
+	</script>
+
+	{% if warning %}
+	<div id="alert" class="alert alert-danger container alert-dismissible" style="margin-top:10px;" role="alert">
+		<button type="button" class="warning-close close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  		<strong>Warning!</strong> {{warning}}
+	</div>
+	{% endif %}
+
+	<div class="container">
+		<h1>Create Reservation for {{building}} in {{room}}</h1>
+	</div>
+
+	<div id="container">
+		<div id="calendar"></div>
+
+		<form action="/saveEvent/" method="post">
+		{% csrf_token %}
+		<input type="hidden" name="building_id" value="{{building_id}}"></input>
+		<input type="hidden" name="room_id" value="{{room_id}}"></input>
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	        	<h3 class="panel-title">Create Reservation</h3>
+	        </div>	
+
+			<div class="container-fluid panel-body">
+				<div class="row">
+					<div class="col-md-6">
+				  		<span>Start:</span>
+				  		<div class='input-group date' id='time-start'>
+				    		<input id="time-start-input" type='text' name="start" class="form-control" required></input>
+				    		<span class="input-group-addon">
+				      			<span class="glyphicon glyphicon-time"></span>
+				    		</span>
+				  		</div>
+				  	</div>
+				  	<div class="col-md-6">
+				  		<span>End:</start>
+				  		<div class='input-group date' id='time-end'>
+				    		<input id="time-end-input" type='text' name="end" class="form-control" required></input>
+				    		<span class="input-group-addon">
+				      			<span class="glyphicon glyphicon-time"></span>
+				    		</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			  	<br>
+			  	<div class="row">
+			  		<div class="col-md-12">
+				  		<span>Date:</start>
+				  		<div class='input-group date' id='date'>
+				    		<input id="date-input" type='text' name="date" class="form-control" required></input>
+				    		<span class="input-group-addon">
+				      			<span class="glyphicon glyphicon-calendar"></span>
+				    		</span>
+				  		</div>
+				  	</div>
+			  	</div>
+			  	<br>
+			  	<div class="row">
+			  		<div class="col-md-12">
+			  			<span>Event Name:</span>
+			  			<input type="text" name="name" class="form-control" rows="1" required></input>
+			  		</div>
+			  	</div>
+			  	<br>
+			  	<div class="row">
+			  		<div class="col-md-12">
+			  			<span>Description:</span>
+			  			<textarea name="description" class="form-control" rows="4" required></textarea>
+			  		</div>
+			  	</div>
+			  	<br>
+			  	<div class="row">
+			  		<div class="col-md-4 col-md-offset-8">
+						<input class="btn btn-primary" style="width:100%" type="submit" value="Submit">
+					</div>
+				</div>
+			</div>
+		</div>
+		</form>
+
+	</div>
+
+
+<script>
+$('#calendar').fullCalendar({
+	height: 500,
+	//selectable: true,
+	contentHeight: 500,
+	header: {
+		left: 'prev,next today',
+		center: 'title',
+		right: 'month,agendaWeek,agendaDay'
+	},
+    events: [
+    		{% for title, start, end in events %}
+				{
+					title: "{{title}}",
+					start: moment("{{start}}"),
+					end: moment("{{end}}"),
+				},
+			{% endfor %}
+			]
+});
+</script>
+
+</body>
+</html>

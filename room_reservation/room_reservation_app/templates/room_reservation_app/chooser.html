@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/css/my_reservations.css" rel="stylesheet">
+    <link href="../../static/css/reset.css" rel="stylesheet">
+    <link href="../../static/css/navbar.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400italic,400,300,700italic,700,500|Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'> 
+	<link href="../../static/css/reset.css" rel="stylesheet">
+	<style>
+		.container {
+			width: 1000px;
+			text-align: center;
+			margin: 0 auto;
+		}
+		h1 {
+			margin: 10px;
+		}
+		#options {
+			text-align: center;
+			width: 300px;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+		#options a {
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Navbar -->
+	<div class="content row">
+      <div class="col-sm-12 col-md-12">
+        <header class="clearfix">
+          <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+              <div class="navbar-header">
+              	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+			            <span class="sr-only">Toggle navigation</span>
+			            kidouchi <span class="caret"></span>
+			          </button>
+                <a class="navbar-brand" href="#"> OpenSpace </a>
+              </div>
+              <div class="navbar-collapse collapse">
+	          	<ul class="nav navbar-nav">
+	            	<li class="active" ><a href="/myReservations/"> My Reservations </a></li>
+	            	<li><a href="/logout/">Sign Out</a></li>
+	            </ul>
+		    </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+          </nav>
+        </header>
+      </div>
+    </div>
+
+	<div class="container"><h1>{{title}}</h1></div>
+	<div id="options">
+	{% for key, value in options.items %}
+		<a href="{{key}}" class="btn btn-primary">{{value}}</a>
+	{% endfor %}
+	</div>
+</body>
+</html>

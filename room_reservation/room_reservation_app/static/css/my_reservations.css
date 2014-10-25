@@ -1,0 +1,41 @@
+.delete_icon {
+	color: SteelBlue;
+}
+
+.delete_icon:hover {
+	color: Crimson;
+}
+
+.white_container {
+	background-color: white;
+	padding: 15px;
+	margin-bottom: 12px;
+}
+
+.white_container h2 {
+	color: SteelBlue;
+	font-weight: bold;
+	font-size: 14pt;
+	padding: 0px;
+	margin: 0px;
+}
+
+.white_container h2 a:hover {
+	text-decoration: none;
+	color: Crimson;
+}
+
+.white_container h3 {
+	color: gray;
+	font-size: 10pt;
+	padding: 0px;
+	margin: 0px;'
+	margin-top: 6pt;
+	margin-bottom: 8pt;
+}
+
+.white_container p {
+	font-size: 10pt;
+	padding: 0px;
+	margin: 0px;
+}
